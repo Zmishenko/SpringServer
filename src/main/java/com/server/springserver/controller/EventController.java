@@ -18,10 +18,13 @@ public class EventController {
         return eventService.getAllEvents();
     }
 
-
-
     @PostMapping("/event/save")
     public Event save(@RequestBody Event event) {
         return eventService.save(event);
+    }
+
+    @PostMapping("/event/change")
+    public Event changeEvent(@RequestBody Event event) {
+        return eventService.changeEvent(event);
     }
 }

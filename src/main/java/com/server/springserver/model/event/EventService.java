@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 // Сервис реализует бизнес логику
 @Service
 public class EventService {
@@ -22,6 +24,17 @@ public class EventService {
         Streamable.of(repository.findAll())
                 .forEach(events::add);
         return events;
+    }
+
+    public Event changeEvent(Event event) {
+        for (Event eventFromBD: repository.findAll()) {
+            if (Objects.equals(eventFromBD.getId(), event.getId())) {
+                repository.delete(eventFromBD);
+                return repository.save(event);
+            }
+        }
+
+        return null;
     }
 
     public void delete(int eventId) {

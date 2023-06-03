@@ -1,10 +1,17 @@
 package com.server.springserver.model.user;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "users")
-//@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "FieldHandler"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,17 +20,23 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "login", unique = true)
+    @Column(name = "login")
     private String login;
 
-    @Column(name = "password", unique = true)
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "mail", unique = true)
+    @Column(name = "mail")
     private String mail;
 
-    @Column(name = "FIO", unique = true)
-    private String FIO;
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "first_name")
+    private String first_name;
+
+    @Column(name = "fathers_name")
+    private String fathers_name;
 
     @Column(name = "userGroup")
     private String userGroup;
@@ -34,49 +47,6 @@ public class User {
     @Column(name = "eventsID")
     private String eventsID;
 
+    @Column(name = "isAuthorized")
     private boolean isAuthorized;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public String getFIO() {
-        return FIO;
-    }
-
-    public String getUserGroup() {
-        return userGroup;
-    }
-
-    public String getDepartament() {
-        return departament;
-    }
-
-    public String getEventsID() {
-        return eventsID;
-    }
-
-    public boolean isAuthorized() {
-        return isAuthorized;
-    }
-
-    public void setAuthorized(boolean authorized) {
-        isAuthorized = authorized;
-    }
 }

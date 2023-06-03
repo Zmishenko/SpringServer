@@ -1,24 +1,23 @@
 package com.server.springserver.model.user;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
-
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
-    public User getUser(String login, String password) {
-        User user = repository.findByLogin(login);
-        user.setAuthorized(user.getPassword().equals(password));
+    public User findUser(String login, String password) {
+        Optional<User> optionalUser = userRepository.findByLogin(login);
+        if (!optionalUser.get().getPassword().equals(password)) {
+            optionalUser = Optional.empty();
+        }
 
-        return user;
-    }
-
-    public List<User> findAll() {
-        return repository.findAll();
+        return optionalUser.orElseThrow();
     }
 }
