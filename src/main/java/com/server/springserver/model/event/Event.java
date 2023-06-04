@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "event")
+@Table(name = "events")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +34,7 @@ public class Event {
 
     @Column(name = "predmet")
     private String predmet;
+
+    @Column(name = "fio")
+    private String fio;
 }
